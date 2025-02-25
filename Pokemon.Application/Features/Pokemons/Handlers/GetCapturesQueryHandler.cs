@@ -1,8 +1,8 @@
 ﻿using Mapster;
 using MediatR;
+using Pokemon.Application.Common.Models;
 using Pokemon.Application.DTOs;
 using Pokemon.Application.Features.Pokemons.Queries;
-using Pokemon.Application.Responses;
 using Pokemon.Application.Services;
 
 namespace Pokemon.Application.Features.Pokemons.Handlers;

@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using Pokemon.Application.Common.Models;
 using Pokemon.Application.DTOs;
-using Pokemon.Application.Responses;
 
 namespace Pokemon.Application.Features.Pokemons.Queries;
 

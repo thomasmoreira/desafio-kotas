@@ -1,4 +1,4 @@
-﻿namespace Pokemon.Application.Responses;
+﻿namespace Pokemon.Application.Common.Models;
 
 public class PaginatedResponse<T>
 {

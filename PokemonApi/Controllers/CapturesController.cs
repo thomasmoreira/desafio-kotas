@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Pokemon.Application.Common.Models;
 using Pokemon.Application.DTOs;
 using Pokemon.Application.Features.Pokemons.Commands;
 using Pokemon.Application.Features.Pokemons.Queries;
-using Pokemon.Application.Responses;
 
 namespace PokemonApi.Controllers;
 
