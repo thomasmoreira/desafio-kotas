@@ -4,7 +4,7 @@ using Pokemon.Application.Features.Pokemons.Queries;
 namespace Pokemon.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v{v:apiVersion}/[controller]")]
 public class PokemonsController : BaseApiController
 {
     [HttpGet("random")]
