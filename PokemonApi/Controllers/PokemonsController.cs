@@ -1,33 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pokemon.Application.Services;
+using Pokemon.Application.Features.Pokemons.Queries;
 
 namespace PokemonApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PokemonsController : ControllerBase
-{
-    private readonly IPokeApiService _pokeApiService;
-    public PokemonsController(IPokeApiService pokeApiService)
-    {
-        _pokeApiService = pokeApiService;
-    }
-
-    // GET api/pokemons/random
+public class PokemonsController : BaseApiController
+{    
     [HttpGet("random")]
-    public async Task<IActionResult> GetRandomPokemons()
+    public async Task<IActionResult> GetRandomPokemons(int count = 10)
     {
-        var pokemons = await _pokeApiService.GetRandomPokemonsAsync(10);
+        var query = new GetRandomPokemonsQuery(count);
+        var pokemons = await Mediator.Send(query);
         return Ok(pokemons);
     }
 
-    // GET api/pokemons/{id}
     [HttpGet("{id}")]
     public async Task<IActionResult> GetPokemonById(int id)
     {
-        var pokemon = await _pokeApiService.GetPokemonByIdAsync(id);
+        var query = new GetPokemonByIdQuery(id);
+        var pokemon = await Mediator.Send(query);
         if (pokemon == null)
             return NotFound();
+
         return Ok(pokemon);
     }
 }

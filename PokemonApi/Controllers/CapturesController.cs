@@ -1,35 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Pokemon.Application.Services;
-using Pokemon.Domain.Entities;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Pokemon.Application.DTOs;
+using Pokemon.Application.Features.Pokemons.Commands;
+using Pokemon.Application.Features.Pokemons.Queries;
+using Pokemon.Application.Responses;
 
 namespace PokemonApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CapturesController : ControllerBase
-{
-    private readonly ICaptureService _captureService;
-    public CapturesController(ICaptureService captureService)
-    {
-        _captureService = captureService;
-    }
-
+public class CapturesController : BaseApiController
+{    
     // POST api/captures
     [HttpPost]
-    public async Task<IActionResult> AddCapture([FromBody] PokemonCapture capture)
+    public async Task<IActionResult> AddCapture([FromBody] CaptureRequestDto capture)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
-
-        var newCapture = await _captureService.AddCaptureAsync(capture);
-        return CreatedAtAction(nameof(AddCapture), new { id = newCapture.Id }, newCapture);
+        
+        var command = new CaptureCreateCommand(capture);
+        
+        CaptureResponseDto result = await Mediator.Send(command);
+        
+        return CreatedAtAction(nameof(AddCapture), new { id = result.Id }, result);
     }
 
     // GET api/captures
-    [HttpGet]
-    public async Task<IActionResult> GetCaptures()
+    [HttpGet("paginated")]
+    public async Task<IActionResult> GetCaptures([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
     {
-        var captures = await _captureService.GetCapturesAsync();
-        return Ok(captures);
+        var query = new GetCapturesQuery(pageNumber, pageSize);
+        PaginatedResponse<CaptureResponseDto> response = await Mediator.Send(query);
+        return Ok(response);
     }
 }

@@ -1,27 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Pokemon.Application.DTOs;
+using Pokemon.Application.Features.Pokemons.Commands;
 using Pokemon.Application.Services;
-using Pokemon.Domain.Entities;
 
 namespace PokemonApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PokemonMastersController : ControllerBase
-{
-    private readonly IMasterService _masterService;
-    public PokemonMastersController(IMasterService masterService)
-    {
-        _masterService = masterService;
-    }
-
-    // POST api/pokemonmasters
+public class PokemonMastersController : BaseApiController
+{    
     [HttpPost]
-    public async Task<IActionResult> CreateMaster([FromBody] PokemonMaster master)
+    public async Task<IActionResult> CreateMaster([FromBody] PokemonMasterRequestDto master)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var createdMaster = await _masterService.CreateMasterAsync(master);
-        return CreatedAtAction(nameof(CreateMaster), new { id = createdMaster.Id }, createdMaster);
+        var command = new CreatePokemonMasterCommand(master);
+        var result = await Mediator.Send(command);
+
+        return CreatedAtAction(nameof(CreateMaster), new { id = result.Id }, result);
     }
 }

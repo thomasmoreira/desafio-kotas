@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Pokemon.Application;
+using Pokemon.Application.Features.Pokemons.Handlers;
 using Pokemon.Application.Services;
 using Pokemon.Infraestructure.Persistence.Context;
 using Pokemon.Infraestructure.Services;
@@ -17,8 +19,10 @@ internal class Program
         builder.Services.AddScoped<IPokeApiService, PokeApiService>();
         builder.Services.AddScoped<IMasterService, MasterService>();
         builder.Services.AddScoped<ICaptureService, CaptureService>();
-
         builder.Services.AddHttpClient<IPokeApiService, PokeApiService>();
+
+        builder.Services.AddApplication();
+
 
         builder.Services.AddControllers();
         builder.Services.AddOpenApi(options =>
