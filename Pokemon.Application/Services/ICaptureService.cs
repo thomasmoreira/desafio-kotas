@@ -1,9 +1,11 @@
-﻿using Pokemon.Domain.Entities;
+﻿using Pokemon.Application.Common.Models;
+using Pokemon.Application.DTOs;
+using Pokemon.Domain.Entities;
 
 namespace Pokemon.Application.Services;
 
 public interface ICaptureService
 {
     Task<PokemonCapture> AddCaptureAsync(PokemonCapture capture);
-    Task<IEnumerable<PokemonCapture>> GetCapturesAsync();
+    Task<IEnumerable<PokemonCapture>> GetCapturesAsync(int pageNumber, int pageSize);
 }

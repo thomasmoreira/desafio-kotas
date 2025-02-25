@@ -18,23 +18,17 @@ public class GetCapturesQueryHandler : IRequestHandler<GetCapturesQuery, Paginat
 
     public async Task<PaginatedResponse<CaptureResponseDto>> Handle(GetCapturesQuery request, CancellationToken cancellationToken)
     {
-        // Obtém todas as capturas
-        var allCaptures = await _captureService.GetCapturesAsync();
-        int totalCount = allCaptures.Count();
 
-        // Aplica a paginação (assumindo que PageNumber começa em 1)
-        var pagedCaptures = allCaptures
-            .Skip((request.PageNumber - 1) * request.PageSize)
-            .Take(request.PageSize)
-            .ToList();
+        var allCaptures = await _captureService.GetCapturesAsync(request.PageNumber, request.PageSize);
 
-        // Mapeia para o DTO de resposta usando Mapster
-        var dtos = pagedCaptures.Adapt<List<CaptureResponseDto>>();
+        var capturesDto = allCaptures.Adapt<IEnumerable<CaptureResponseDto>>();
 
-        return new PaginatedResponse<CaptureResponseDto>
+        return new PaginatedResponse<CaptureResponseDto> 
         {
-            Items = dtos,
-            TotalCount = totalCount
+            Items = capturesDto,
+            TotalCount = allCaptures.Count(),
+            Page = request.PageNumber,
+            PageSize = request.PageSize
         };
     }
 }

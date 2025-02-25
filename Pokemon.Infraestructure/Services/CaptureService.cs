@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
+using Pokemon.Application.Common.Models;
+using Pokemon.Application.DTOs;
 using Pokemon.Application.Services;
 using Pokemon.Domain.Entities;
 using Pokemon.Infraestructure.Persistence.Context;
@@ -20,10 +23,19 @@ public class CaptureService : ICaptureService
         return capture;
     }
 
-    public async Task<IEnumerable<PokemonCapture>> GetCapturesAsync()
+    public async Task<IEnumerable<PokemonCapture>> GetCapturesAsync(int pageNumber, int pageSize)
     {
-        return await _context.PokemonCaptures
-            .Include(c => c.Master)
+        var query = _context.PokemonCaptures
+                            .AsNoTracking()
+                            .OrderBy(c => c.Id);
+
+        int totalCount = await query.CountAsync();
+
+        var captures = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
+
+        return captures;
     }
 }
