@@ -1,4 +1,3 @@
-using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Pokemon.Application;
 using Pokemon.Application.Services;
