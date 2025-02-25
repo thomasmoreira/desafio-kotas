@@ -22,7 +22,7 @@ public class PokemonsController : BaseApiController
 
         var pokemon = await Mediator.Send(query);
         if (pokemon == null)
-            return BadRequest("Pokemon não encontrado");
+            return NotFound("Pokemon não encontrado");
 
         return Ok(pokemon);
     }

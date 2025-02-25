@@ -22,7 +22,7 @@ public class CaptureService : ICaptureService
 
     public async Task<IEnumerable<PokemonCapture>> GetCapturesAsync(int pageNumber, int pageSize)
     {
-        var query = _context.PokemonCaptures
+        var query = _context.PokemonCaptures.Include(c => c.Master)
                             .AsNoTracking()
                             .OrderBy(c => c.Id);
 

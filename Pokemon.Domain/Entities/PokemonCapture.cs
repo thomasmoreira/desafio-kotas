@@ -5,6 +5,6 @@ public class PokemonCapture
     public int Id { get; set; }
     public int PokemonId { get; set; }
     public int MasterId { get; set; }
-    public DateTime DataCaptura { get; set; } = DateTime.UtcNow;
+    public DateTime CaptureDate { get; set; } = DateTime.UtcNow;
     public PokemonMaster? Master { get; set; }
 }
