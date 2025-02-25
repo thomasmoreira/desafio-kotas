@@ -3,5 +3,5 @@
 public class CaptureRequestDto
 {
     public int PokemonId { get; set; }
-    public int MasterId { get; set; }
+    public Guid MasterId { get; set; }
 }
