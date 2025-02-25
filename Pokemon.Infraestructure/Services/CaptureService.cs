@@ -1,7 +1,4 @@
-﻿using Mapster;
-using Microsoft.EntityFrameworkCore;
-using Pokemon.Application.Common.Models;
-using Pokemon.Application.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
 using Pokemon.Application.Services;
 using Pokemon.Domain.Entities;
 using Pokemon.Infraestructure.Persistence.Context;

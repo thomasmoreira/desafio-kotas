@@ -1,5 +1,4 @@
 ﻿using Pokemon.Application.Services;
-using System.Text.Json.Nodes;
 using System.Text.Json;
 using Pokemon.Application.DTOs;
 
