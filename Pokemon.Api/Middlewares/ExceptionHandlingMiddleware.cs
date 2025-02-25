@@ -1,7 +1,7 @@
 ﻿using Pokemon.Application.Common;
 using System.Net;
 
-namespace PokemonApi.Middlewares
+namespace Pokemon.Api.Middlewares
 {
     public class ExceptionHandlingMiddleware
     {
@@ -17,13 +17,13 @@ namespace PokemonApi.Middlewares
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
-            {                
+            {
                 await _next(httpContext);
             }
             catch (Exception ex)
-            {                
+            {
                 _logger.LogError(ex, "Unhandled exception occurred.");
-                
+
                 await HandleExceptionAsync(httpContext, ex);
             }
         }

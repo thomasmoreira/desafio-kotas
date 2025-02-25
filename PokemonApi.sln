@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon.Infraestructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon.Application", "Pokemon.Application\Pokemon.Application.csproj", "{15AEA889-D55E-4198-B8CF-9AE41C28C47A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonApi", "PokemonApi\PokemonApi.csproj", "{D09317DC-4112-46BA-AABA-A3F61F859131}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon.Api", "Pokemon.Api\Pokemon.Api.csproj", "{D09317DC-4112-46BA-AABA-A3F61F859131}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

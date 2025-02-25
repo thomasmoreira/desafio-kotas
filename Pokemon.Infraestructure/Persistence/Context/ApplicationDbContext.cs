@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pokemon.Application.DTOs;
 using Pokemon.Domain.Entities;
 
 namespace Pokemon.Infraestructure.Persistence.Context;

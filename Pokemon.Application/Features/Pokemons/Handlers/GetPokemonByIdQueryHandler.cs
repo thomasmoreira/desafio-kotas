@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Pokemon.Application.DTOs;
 using Pokemon.Application.Features.Pokemons.Queries;
 using Pokemon.Application.Services;
@@ -14,9 +15,10 @@ public class GetPokemonByIdQueryHandler : IRequestHandler<GetPokemonByIdQuery, P
         _pokeApiService = pokeApiService;
     }
 
-    public async Task<PokemonDto> Handle(GetPokemonByIdQuery request, CancellationToken cancellationToken)
+    public async Task<PokemonDto?> Handle(GetPokemonByIdQuery request, CancellationToken cancellationToken)
     {
         var pokemon = await _pokeApiService.GetPokemonDetailsAsync(request.Id);
-        return pokemon;
+        var pokemonDto = pokemon?.Adapt<PokemonDto>();
+        return pokemonDto;
     }
 }

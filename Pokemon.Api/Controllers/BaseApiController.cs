@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PokemonApi.Controllers
+namespace Pokemon.Api.Controllers
 {
     public class BaseApiController : ControllerBase
     {

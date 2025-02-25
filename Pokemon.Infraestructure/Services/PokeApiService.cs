@@ -1,6 +1,6 @@
-﻿using Pokemon.Application.Services;
+﻿using Pokemon.Application.DTOs;
+using Pokemon.Application.Services;
 using System.Text.Json;
-using Pokemon.Application.DTOs;
 
 namespace Pokemon.Infraestructure.Services;
 
@@ -58,21 +58,18 @@ public class PokeApiService : IPokeApiService
         using var document = JsonDocument.Parse(json);
         var root = document.RootElement;
 
-        var dto = new PokemonDto
+        var pokemonCreature = new PokemonDto
         {
             Id = root.GetProperty("id").GetInt32(),
             Nome = root.GetProperty("name").GetString() ?? string.Empty
-            // Preencha outras propriedades básicas conforme necessário
         };
 
-        // Converter sprite default em base64
         var spriteUrl = root.GetProperty("sprites").GetProperty("front_default").GetString();
         if (!string.IsNullOrEmpty(spriteUrl))
         {
-            dto.SpriteBase64 = await GetImageAsBase64Async(spriteUrl);
+            pokemonCreature.SpriteBase64 = await GetImageAsBase64Async(spriteUrl);
         }
 
-        // Buscar dados da espécie para obter a URL da cadeia de evolução
         var speciesUrl = root.GetProperty("species").GetProperty("url").GetString();
         if (!string.IsNullOrEmpty(speciesUrl))
         {
@@ -94,14 +91,13 @@ public class PokeApiService : IPokeApiService
                         var evolutionJson = await evolutionResponse.Content.ReadAsStringAsync();
                         using var evolutionDoc = JsonDocument.Parse(evolutionJson);
 
-                        // Processa a cadeia de evolução para extrair os nomes
-                        dto.Evolucoes = ParseEvolutionChain(evolutionDoc.RootElement);
+                        pokemonCreature.Evolucoes = ParseEvolutionChain(evolutionDoc.RootElement);
                     }
                 }
             }
         }
 
-        return dto;
+        return pokemonCreature;
     }
 
     private async Task<string> GetImageAsBase64Async(string imageUrl)
@@ -118,7 +114,6 @@ public class PokeApiService : IPokeApiService
     {
         var evolucoes = new List<string>();
 
-        // A estrutura da cadeia de evolução começa em "chain"
         if (evolutionChainRoot.TryGetProperty("chain", out var chain))
         {
             void Traverse(JsonElement node)
@@ -132,7 +127,6 @@ public class PokeApiService : IPokeApiService
                     }
                 }
 
-                // Se existir evolução, ela geralmente está no array "evolves_to"
                 if (node.TryGetProperty("evolves_to", out var evolvesTo))
                 {
                     foreach (var child in evolvesTo.EnumerateArray())

@@ -1,15 +1,11 @@
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Pokemon.Api.Filters;
+using Pokemon.Api.Middlewares;
 using Pokemon.Application;
-using Pokemon.Application.Services;
-using Pokemon.Application.Validators;
 using Pokemon.Infraestructure;
 using Pokemon.Infraestructure.Persistence.Context;
-using Pokemon.Infraestructure.Services;
-using PokemonApi.Filters;
-using PokemonApi.Middlewares;
 
 internal class Program
 {
@@ -56,6 +52,7 @@ internal class Program
         using (var scope = app.Services.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            dbContext.Database.EnsureDeleted();
             dbContext.Database.Migrate();
         }
         if (app.Environment.IsDevelopment())

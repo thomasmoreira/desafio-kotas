@@ -4,15 +4,15 @@ using Pokemon.Application.DTOs;
 using Pokemon.Application.Features.Pokemons.Commands;
 using Pokemon.Application.Features.Pokemons.Queries;
 
-namespace PokemonApi.Controllers;
+namespace Pokemon.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class PokemonMastersController : BaseApiController
-{    
+{
     [HttpPost]
     public async Task<IActionResult> CreateMaster([FromBody] PokemonMasterRequestDto master)
-    {        
+    {
         var command = new CreatePokemonMasterCommand(master);
         var result = await Mediator.Send(command);
 

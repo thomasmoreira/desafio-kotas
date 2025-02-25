@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PokemonApi.Filters;
+namespace Pokemon.Api.Filters;
 
 public class ValidationFilter : IActionFilter
 {
@@ -11,7 +11,8 @@ public class ValidationFilter : IActionFilter
         {
             var errors = context.ModelState
                 .Where(ms => ms.Value.Errors.Count > 0)
-                .Select(ms => new {
+                .Select(ms => new
+                {
                     Field = ms.Key,
                     Errors = ms.Value.Errors.Select(e => e.ErrorMessage)
                 });

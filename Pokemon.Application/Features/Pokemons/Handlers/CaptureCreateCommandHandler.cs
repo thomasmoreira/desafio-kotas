@@ -20,7 +20,6 @@ public class CaptureCreateCommandHandler : IRequestHandler<CaptureCreateCommand,
     {
 
         var captureEntity = request.CaptureDto.Adapt<PokemonCapture>();
-
         captureEntity.CaptureDate = DateTime.UtcNow;
 
         var resultEntity = await _captureService.AddCaptureAsync(captureEntity);

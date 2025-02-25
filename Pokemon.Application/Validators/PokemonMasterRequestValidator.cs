@@ -7,11 +7,11 @@ public class PokemonMasterRequestValidator : AbstractValidator<PokemonMasterRequ
 {
     public PokemonMasterRequestValidator()
     {
-        RuleFor(x => x.Nome)
+        RuleFor(x => x.Name)
             .NotEmpty().WithMessage("O nome é obrigatório.")
             .MinimumLength(3).WithMessage("O nome deve conter pelo menos 3 caracteres.");
 
-        RuleFor(x => x.Idade)
+        RuleFor(x => x.Age)
             .GreaterThan(0).WithMessage("A idade deve ser maior que zero.");
 
         RuleFor(x => x.Cpf)

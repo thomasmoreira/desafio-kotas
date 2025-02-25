@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pokemon.Application.Features.Pokemons.Queries;
 
-namespace PokemonApi.Controllers;
+namespace Pokemon.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class PokemonsController : BaseApiController
-{    
+{
     [HttpGet("random")]
     public async Task<IActionResult> GetRandomPokemons(int count = 10)
     {

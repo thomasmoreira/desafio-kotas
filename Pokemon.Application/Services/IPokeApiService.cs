@@ -1,6 +1,5 @@
 ﻿using Pokemon.Application.DTOs;
-using System.Text.Json;
-using System.Text.Json.Nodes;
+using Pokemon.Domain.Entities;
 
 namespace Pokemon.Application.Services;
 
