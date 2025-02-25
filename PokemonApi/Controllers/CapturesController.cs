@@ -10,8 +10,7 @@ namespace PokemonApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 public class CapturesController : BaseApiController
-{    
-    // POST api/captures
+{        
     [HttpPost]
     public async Task<IActionResult> AddCapture([FromBody] CaptureRequestDto capture)
     {
@@ -25,7 +24,6 @@ public class CapturesController : BaseApiController
         return CreatedAtAction(nameof(AddCapture), new { id = result.Id }, result);
     }
 
-    // GET api/captures
     [HttpGet("paginated")]
     public async Task<IActionResult> GetCaptures([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
     {
