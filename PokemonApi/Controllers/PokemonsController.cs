@@ -19,9 +19,10 @@ public class PokemonsController : BaseApiController
     public async Task<IActionResult> GetPokemonById(int id)
     {
         var query = new GetPokemonByIdQuery(id);
+
         var pokemon = await Mediator.Send(query);
         if (pokemon == null)
-            return NotFound();
+            return BadRequest("Pokemon não encontrado");
 
         return Ok(pokemon);
     }
