@@ -1,4 +1,6 @@
-﻿using Pokemon.Application.Common;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Pokemon.Application.Common;
 using System.Net;
 
 namespace Pokemon.Api.Middlewares
@@ -23,7 +25,6 @@ namespace Pokemon.Api.Middlewares
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unhandled exception occurred.");
-
                 await HandleExceptionAsync(httpContext, ex);
             }
         }
@@ -31,15 +32,15 @@ namespace Pokemon.Api.Middlewares
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
+                       
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-            var errorDetails = new ErrorDetails
+            var defaultErrorDetails = new ErrorDetails
             {
                 StatusCode = context.Response.StatusCode,
                 Message = "Ocorreu um erro interno no servidor. Tente novamente mais tarde."
             };
 
-            return context.Response.WriteAsync(errorDetails.ToString());
+            return context.Response.WriteAsync(defaultErrorDetails.ToString());
         }
     }
 }

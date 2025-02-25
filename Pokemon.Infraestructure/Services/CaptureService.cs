@@ -20,6 +20,14 @@ public class CaptureService : ICaptureService
         return capture;
     }
 
+    public async Task<PokemonCapture?> GetCaptureAsync(int pokemonId)
+    {
+        var capture = await _context.PokemonCaptures            
+            .FirstOrDefaultAsync(c => c.PokemonId == pokemonId);
+
+        return capture;
+    }
+
     public async Task<IEnumerable<PokemonCapture>> GetCapturesAsync(int pageNumber, int pageSize)
     {
         var query = _context.PokemonCaptures.Include(c => c.Master)
