@@ -29,6 +29,6 @@ Com uma arquitetura modular, o projeto adota as melhores práticas de desenvolvi
 ### 1. Clonando o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/Pokemon.Api.git
+git clone https://github.com/thomasmoreira/desafio-kotas.git
 cd Pokemon.Api
 dotnet run
