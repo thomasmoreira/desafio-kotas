@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
+using Pokemon.Api.Filters;
 using Pokemon.Application.Common.Models;
 using Pokemon.Application.DTOs;
 using Pokemon.Application.Features.Pokemons.Commands;
@@ -11,10 +13,13 @@ namespace Pokemon.Api.Controllers;
 public class CapturesController : BaseApiController
 {
     [HttpPost]
-    public async Task<IActionResult> AddCapture([FromBody] CaptureRequestDto capture)
+    public async Task<IActionResult> AddCapture([FromBody] CaptureRequestDto capture, [FromServices] IValidator<CaptureRequestDto> validator)
     {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+        var validationResult = await validator.ValidateAsync(capture);
+        if (!validationResult.IsValid)
+        {
+            return BadRequest(validationResult.Errors);
+        }
 
         var command = new CaptureCreateCommand(capture);
 

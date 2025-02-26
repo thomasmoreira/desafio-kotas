@@ -25,11 +25,12 @@ internal class Program
         {
             options.SuppressModelStateInvalidFilter = true;
         });
+
+        builder.Services.AddScoped<ValidateModelAsyncAttribute>();
         builder.Services.AddControllers(options =>
         {
-            options.Filters.Add<ValidationFilter>();
-        });
-        builder.Services.AddFluentValidationAutoValidation();
+            options.Filters.Add<ValidateModelAsyncAttribute>();
+        });        
 
         builder.Services.AddOpenApi(options =>
         {

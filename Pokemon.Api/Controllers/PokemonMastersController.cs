@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using Pokemon.Application.Common.Models;
 using Pokemon.Application.DTOs;
 using Pokemon.Application.Features.Pokemons.Commands;
@@ -11,8 +12,14 @@ namespace Pokemon.Api.Controllers;
 public class PokemonMastersController : BaseApiController
 {
     [HttpPost]
-    public async Task<IActionResult> CreateMaster([FromBody] PokemonMasterRequestDto master)
+    public async Task<IActionResult> CreateMaster([FromBody] PokemonMasterRequestDto master, [FromServices] IValidator<PokemonMasterRequestDto> validator)
     {
+        var validationResult = await validator.ValidateAsync(master);
+        if (!validationResult.IsValid)
+        {
+            return BadRequest(validationResult.Errors);
+        }
+
         var command = new CreatePokemonMasterCommand(master);
         var result = await Mediator.Send(command);
 

@@ -22,7 +22,7 @@ public class ValidationFilter : IActionFilter
                 Message = "Um ou mais erros de validação ocorreram.",
                 Errors = errors
             });
-        }
+        }   
     }
 
     public void OnActionExecuted(ActionExecutedContext context) { }
