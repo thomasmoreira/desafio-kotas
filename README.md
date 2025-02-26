@@ -31,3 +31,4 @@ Com uma arquitetura modular, o projeto adota as melhores práticas de desenvolvi
 ```bash
 git clone https://github.com/seu-usuario/Pokemon.Api.git
 cd Pokemon.Api
+dotnet run
