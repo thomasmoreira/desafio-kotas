@@ -1,15 +1,16 @@
 # Pokemon API
 
-A **Pokemon API** é uma aplicação desenvolvida em ASP.NET Core que fornece endpoints para gerenciamento e consulta de dados de Pokémon. 
-Com uma arquitetura modular, o projeto adota as melhores práticas de desenvolvimento, utilizando o FluentValidation para garantir validações robustas – inclusive com regras assíncronas – e filtros personalizados para padronizar o retorno de erros.
+A **Pokemon API** é uma aplicação desenvolvida em ASP.NET Core para um desafio by Coodesh.
+Com uma arquitetura modular, o projeto adota as melhores práticas de desenvolvimento. utilizando o FluentValidation para garantir validações robustas – inclusive com regras assíncronas – e filtros personalizados para padronizar o retorno de erros.
 
 ---
 
 ## Funcionalidades
 
-- **CRUD de Pokémons:** Criação, leitura, atualização e exclusão de registros.
+- **Consulta de Pokémons**, **Cadastro e Consulta de Chefes Pokémons**, **Registro e Consulta de Captura de Pokémons**
 - **Validação Personalizada:** Uso do FluentValidation para validar as requisições, com suporte para regras assíncronas.
 - **Retorno Padronizado de Erros:** Filtros customizados que formatam as mensagens de erro de forma consistente.
+- **MediatR:** Implementação do MediatR para desacoplar a lógica de negócio dos controllers, organizando comandos e queries de forma limpa e escalável.
 - **Injeção de Dependências:** Estrutura desacoplada para facilitar testes e manutenção.
 - **Extensibilidade:** Arquitetura modular que permite a adição de novas funcionalidades e endpoints facilmente.
 
