@@ -71,7 +71,7 @@ internal class Program
         using (var scope = app.Services.CreateScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            dbContext.Database.EnsureDeleted();
+            //dbContext.Database.EnsureDeleted();
             dbContext.Database.Migrate();
         }
         if (app.Environment.IsDevelopment())
