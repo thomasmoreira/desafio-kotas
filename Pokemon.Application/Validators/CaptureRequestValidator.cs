@@ -4,12 +4,12 @@ using Pokemon.Application.Services;
 
 namespace Pokemon.Application.Validators;
 
-public class CaptureCreateRequestValidator : AbstractValidator<CaptureRequestDto>
+public class CaptureRequestValidator : AbstractValidator<CaptureRequestDto>
 {
     private readonly ICaptureService _captureService;
     private readonly IPokeApiService _pokeApiService;
     private readonly IMasterService _masterService;
-    public CaptureCreateRequestValidator(ICaptureService captureService, IPokeApiService pokeApiService, IMasterService masterService)
+    public CaptureRequestValidator(ICaptureService captureService, IPokeApiService pokeApiService, IMasterService masterService)
     {
         _captureService = captureService;
         _pokeApiService = pokeApiService;
