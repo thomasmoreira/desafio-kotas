@@ -1,6 +1,6 @@
 # Pokemon API
 
-A **Pokemon API** é uma aplicação desenvolvida em ASP.NET Core para um desafio by Coodesh.
+A **Pokemon API** é uma aplicação desenvolvida em ASP.NET Core, utilizando como base a API https://pokeapi.co/,  para um desafio by Coodesh.
 Com uma arquitetura modular, o projeto adota as melhores práticas de desenvolvimento. utilizando o FluentValidation para garantir validações robustas – inclusive com regras assíncronas – e filtros personalizados para padronizar o retorno de erros.
 
 ---
