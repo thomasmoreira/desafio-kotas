@@ -24,13 +24,13 @@ public class CaptureRequestValidator : AbstractValidator<CaptureRequestDto>
         {
             var pokemon = await _pokeApiService.GetPokemonByIdAsync(pokemonId);
             return pokemon != null;
-        }).WithMessage("Informe um pokemon válido");
+        }).WithMessage("Informe um pokemon válido.");
 
         RuleFor(x => x.PokemonId).MustAsync(async (pokemonId, cancellationToken) =>
         {
             var capture = await _captureService.GetCaptureAsync(pokemonId);
             return capture == null;
-        }).WithMessage("Você já realizou essa captura");
+        }).WithMessage("Você já realizou essa captura.");
 
 
         RuleFor(x => x.MasterId)
@@ -40,7 +40,7 @@ public class CaptureRequestValidator : AbstractValidator<CaptureRequestDto>
         {
             var master = await _masterService.GetPokemonMasterById(masterId);
             return master != null;
-        }).WithMessage("Informe um mestre válido");
+        }).WithMessage("Informe um Mestre Pokémon válido.");
         
     }
 }
