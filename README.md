@@ -30,5 +30,5 @@ Com uma arquitetura modular, o projeto adota as melhores práticas de desenvolvi
 
 ```bash
 git clone https://github.com/thomasmoreira/desafio-kotas.git
-cd Pokemon.Api
+cd desafio-kotas/Pokemon.Api
 dotnet run
