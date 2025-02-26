@@ -1,6 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Pokemon.Application.Common;
+﻿using Pokemon.Application.Common;
 using System.Net;
 
 namespace Pokemon.Api.Middlewares

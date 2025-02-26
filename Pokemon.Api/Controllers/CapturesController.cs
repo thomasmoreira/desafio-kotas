@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Pokemon.Api.Filters;
 using Pokemon.Application.Common.Models;
 using Pokemon.Application.DTOs;
 using Pokemon.Application.Features.Pokemons.Commands;

@@ -17,14 +17,11 @@ public class CreatePokemonMasterCommandHandler : IRequestHandler<CreatePokemonMa
     }
 
     public async Task<PokemonMasterResponseDto> Handle(CreatePokemonMasterCommand request, CancellationToken cancellationToken)
-    {
-        // Mapeia o DTO de request para a entidade
+    {        
         var masterEntity = request.MasterRequest.Adapt<PokemonMaster>();
-
-        // Chama o serviço para criar o mestre no banco de dados
+     
         var createdMaster = await _masterService.CreateMasterAsync(masterEntity);
 
-        // Mapeia a entidade criada para o DTO de resposta
         var responseDto = createdMaster.Adapt<PokemonMasterResponseDto>();
         return responseDto;
     }

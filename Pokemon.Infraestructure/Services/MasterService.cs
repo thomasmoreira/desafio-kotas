@@ -20,6 +20,13 @@ public class MasterService : IMasterService
         return master;
     }
 
+    public async Task<PokemonMaster?> GetPokemonMasterById(Guid id)
+    {
+             
+        var master = await _context.PokemonMasters.FirstOrDefaultAsync(m => m.Id == id);
+        return master;
+    }
+
     public async Task<IEnumerable<PokemonMaster>> GetPokemonMastersPaginatedAsync(int pageNumber, int pageSize)
     {
         
@@ -28,8 +35,7 @@ public class MasterService : IMasterService
                             .OrderBy(m => m.Id);
         
         int totalCount = await query.CountAsync();
-
-        // Aplica paginação com Skip e Take de forma assíncrona
+        
         var masters = await query
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)

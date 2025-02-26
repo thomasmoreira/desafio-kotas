@@ -1,5 +1,4 @@
 ﻿using Pokemon.Application.DTOs;
-using Pokemon.Domain.Entities;
 
 namespace Pokemon.Application.Services;
 

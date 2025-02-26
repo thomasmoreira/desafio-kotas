@@ -1,6 +1,4 @@
-﻿using Pokemon.Application.Common.Models;
-using Pokemon.Application.DTOs;
-using Pokemon.Domain.Entities;
+﻿using Pokemon.Domain.Entities;
 
 namespace Pokemon.Application.Services;
 
